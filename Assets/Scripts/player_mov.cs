@@ -15,6 +15,10 @@ public class player_mov : MonoBehaviour
     [SerializeField] Rigidbody2D player;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] float velocidad;
+
+    [SerializeField]
+    float aceleracion, desaceleracion;
+
     [SerializeField] GameObject baculo;
     [SerializeField] Rigidbody2D baculoRG;
     [SerializeField] Animator player_anim;
@@ -105,22 +109,35 @@ public class player_mov : MonoBehaviour
 
             if (Input.GetKey(KeyCode.X) && walking)
             {
-                if (velocidad < velocidad_base * 1.5)
-                {
-                    //velocidad = velocidad_base * 2f;
-                    velocidad += 0.1f;
-                    running = true;
-                }
-
+                velocidad = Mathf.Clamp(velocidad += (aceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
+                running = true;
             }
             else
             {
                 running = false;
-                if (velocidad > velocidad_base)
-                {
-                    velocidad -= 0.1f;
-                }
+                velocidad = Mathf.Clamp(velocidad -= (desaceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
             }
+
+            //if (Input.GetKey(KeyCode.X) && walking)
+            //{
+            //    if (velocidad < velocidad_base * 1.5)
+            //    {
+            //        //velocidad = velocidad_base * 2f;
+            //        velocidad += 0.1f;
+            //        running = true;
+            //    }
+
+            //}
+            //else
+            //{
+            //    running = false;
+            //    if (velocidad > velocidad_base)
+            //    {
+            //        velocidad -= 0.1f;
+            //    }
+            //}
+
+
 
             // Codigo del baculo
             if (Input.GetKeyDown(KeyCode.C))
