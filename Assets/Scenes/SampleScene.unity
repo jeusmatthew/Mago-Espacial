@@ -15253,8 +15253,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 634688799}
     - target: {fileID: 5694312734122416376, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: CreceSolo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694312734122416376, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: multiplicador
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5694312734122416376, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: jugadorCamaraScr

@@ -25,6 +25,7 @@ public class baculo_movement : MonoBehaviour
     public float tiempo;
     public int tiempoEntero;
 
+    public bool CreceSolo;
 
     //private float offsetB;
     
@@ -57,13 +58,18 @@ public class baculo_movement : MonoBehaviour
 
         //transform.localScale = new Vector3(player.GetComponent<player_mov>().energia * multiplicador, transform.localScale.y);
 
-        
+
         // Si se esta moviendo, que crezca
-        //if (Input.GetKey(KeyCode.C))
+        //if (Input.GetKey(KeyCode.C) && !CreceSolo)
         //{
+        //    tiempo += Time.deltaTime * multiplicador;
+        //}
+        //else if (CreceSolo)
+        //{
+        //    tiempo += Time.deltaTime * multiplicador;
         //}
 
-        // Esto acumula el tiempo que pasa
+        //// Esto acumula el tiempo que pasa
         tiempo += Time.deltaTime * multiplicador;
 
         // Lo redondea para que muestre los segundos en entero
