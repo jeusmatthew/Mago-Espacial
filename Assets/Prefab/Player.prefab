@@ -103,8 +103,8 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 6200000, guid: a9cca2f58b7a2c9428cb4d8da30e9bfc, type: 2}
-  m_Interpolate: 0
+  m_Material: {fileID: 6200000, guid: b983e10f1d702a74399b1a4dbe5a4760, type: 2}
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3180759057352961086}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a9cca2f58b7a2c9428cb4d8da30e9bfc, type: 2}
+  m_Material: {fileID: 6200000, guid: b983e10f1d702a74399b1a4dbe5a4760, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -165,15 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2abbca59db33e419c1f2a17c0d47b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad_base: 10
-  fuerza_salto: 22
-  longitud_rayo: 0.8
-  player: {fileID: 3180759057352961074}
-  sprite: {fileID: 3180759057352961075}
-  velocidad: 0
-  baculo: {fileID: 0}
+  baseVelocity: 10
+  jumpForce: 22
+  raySize: 0.8
+  playerVelocity: 0
+  aceleracion: 10
+  desaceleracion: 5
+  playerRigidBody2D: {fileID: 3180759057352961074}
   baculoRG: {fileID: 0}
-  player_anim: {fileID: 3180759057352961084}
+  playerSprite: {fileID: 3180759057352961075}
+  playerAnimator: {fileID: 3180759057352961084}
+  baston: {fileID: 0}
   respawn: {fileID: 0}
   jump_sound: {fileID: 8300000, guid: 8d847345a6161064ea2d2f91f79bfa9c, type: 3}
   baculoSoundOn: {fileID: 8300000, guid: 01fb70695eae8ed47aa3052518c8fd18, type: 3}
@@ -183,7 +185,11 @@ MonoBehaviour:
   vidaUI: {fileID: 0}
   manzanasUI: {fileID: 0}
   escalaUI: {fileID: 0}
+  canJump: 0
   running: 0
   walking: 0
+  debugMode: 1
   vida: 3
   totalManzanas: 0
+  playerMovement: {x: 0, y: 0}
+  bastonMovement: {x: 0, y: 0}
