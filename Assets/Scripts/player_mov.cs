@@ -8,13 +8,12 @@ using TMPro;
 
 public class player_mov : MonoBehaviour
 {
-    [SerializeField] float velocidad_base;
-    [SerializeField] float fuerza_salto;
-    [SerializeField] float longitud_rayo;
+    [SerializeField] 
+    float baseVelocity, jumpForce, raySize,  playerVelocity;
 
     [SerializeField] Rigidbody2D player;
     [SerializeField] SpriteRenderer sprite;
-    [SerializeField] float velocidad;
+
 
     [SerializeField]
     float aceleracion, desaceleracion;
@@ -47,6 +46,9 @@ public class player_mov : MonoBehaviour
     [SerializeField] 
     int vida = 1;
 
+    [SerializeField]
+    Vector2 playerMovement, bastonMovement;
+
 
     public int totalManzanas;
 
@@ -59,7 +61,7 @@ public class player_mov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        velocidad = velocidad_base;
+        playerVelocity = baseVelocity;
         transform.position = respawn.position;
     }
 
@@ -69,8 +71,8 @@ public class player_mov : MonoBehaviour
         if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
         {
 
-            Debug.DrawRay(transform.position, Vector3.down * longitud_rayo, Color.red);
-            if (Physics2D.Raycast(transform.position, Vector3.down, longitud_rayo))
+            Debug.DrawRay(transform.position, Vector3.down * raySize, Color.red);
+            if (Physics2D.Raycast(transform.position, Vector3.down, raySize))
             {
                 esta_tocando_suelo = true;
             }
@@ -109,13 +111,13 @@ public class player_mov : MonoBehaviour
 
             if (Input.GetKey(KeyCode.X) && walking)
             {
-                velocidad = Mathf.Clamp(velocidad += (aceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
+                playerVelocity = Mathf.Clamp(playerVelocity += (aceleracion * Time.deltaTime), baseVelocity, baseVelocity * 1.5f);
                 running = true;
             }
             else
             {
                 running = false;
-                velocidad = Mathf.Clamp(velocidad -= (desaceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
+                playerVelocity = Mathf.Clamp(playerVelocity -= (desaceleracion * Time.deltaTime), baseVelocity, baseVelocity * 1.5f);
             }
 
             //if (Input.GetKey(KeyCode.X) && walking)
@@ -164,11 +166,11 @@ public class player_mov : MonoBehaviour
                 baculoRG.angularVelocity = 0;
                 //baculoRG.freezeRotation = true;
                 baculoRG.gravityScale = 0;
-                baculoRG.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
+                baculoRG.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, Input.GetAxis("Vertical") * playerVelocity);
             }
             else
             {
-                player.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, player.velocity.y);
+                player.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, player.velocity.y);
                 baculoRG.gravityScale = 5;
                 //baculoRG.freezeRotation = false;
             }
@@ -197,8 +199,8 @@ public class player_mov : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Finish")
+    { 
+        if (collision.CompareTag("Finish"))
         {
             Camera.main.GetComponent<player_camera>().GameOverFinal();
         }
@@ -208,7 +210,7 @@ public class player_mov : MonoBehaviour
     {
         //Camera.main.GetComponent<AudioSource>().PlayOneShot(jump_sound);
         Camera.main.GetComponent<AudioSource>().PlayOneShot(jump_sound);
-        player.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
+        player.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         //if (running)
         //{
