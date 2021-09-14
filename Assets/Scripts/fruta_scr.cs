@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class fruta_scr : MonoBehaviour
 {
-    [SerializeField] AudioClip frutaSound;
+    [SerializeField] 
+    AudioClip frutaSound;
+
+    [SerializeField]
+    bool isFloating;
 
     //[SerializeField] player_mov player;
 
+    private void Awake()
+    {
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        isFloating = true;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +38,12 @@ public class fruta_scr : MonoBehaviour
             collision.collider.GetComponent<player_mov>().AñadirManzana();
             Camera.main.GetComponent<AudioSource>().PlayOneShot(frutaSound);
         }
-
+    
+        if (isFloating)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 5;
+            isFloating = false;
+        }
 
     }
 
