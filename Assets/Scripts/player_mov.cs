@@ -3,52 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
 public class player_mov : MonoBehaviour
 {
-    [SerializeField] float velocidad_base;
-    [SerializeField] float fuerza_salto;
-    [SerializeField] float longitud_rayo;
+    [SerializeField] 
+    float baseVelocity, jumpForce, raySize, playerVelocity, aceleracion, desaceleracion;
 
-    [SerializeField] Rigidbody2D player;
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] float velocidad;
+    [SerializeField] 
+    Rigidbody2D playerRigidBody2D, baculoRG;
+    
+    [SerializeField] 
+    SpriteRenderer playerSprite;
 
     [SerializeField]
-    float aceleracion, desaceleracion;
+    Animator playerAnimator;
 
-    [SerializeField] GameObject baculo;
-    [SerializeField] Rigidbody2D baculoRG;
-    [SerializeField] Animator player_anim;
+    [SerializeField] 
+    GameObject baston;
 
-    [SerializeField] Transform respawn;
+    [SerializeField] 
+    Transform respawn;
     
-    [SerializeField] AudioClip jump_sound;
-    [SerializeField] AudioClip baculoSoundOn;
-    [SerializeField] AudioClip baculoSoundOff;
-    [SerializeField] AudioClip gameOver;
-    [SerializeField] AudioClip hitAudio;
-
-    //[SerializeField] Text energiasText;
-    //[SerializeField] Text vidasText;
+    [SerializeField] 
+    AudioClip jump_sound, baculoSoundOn, baculoSoundOff, gameOver, hitAudio;
 
     [SerializeField]
     TMP_Text vidaUI, manzanasUI, escalaUI;
 
-    //[SerializeField]
-    //GameObject baston;
-
-    bool esta_tocando_suelo;
-    [SerializeField] bool running;
-    [SerializeField] bool walking;
+    [SerializeField]
+    bool canJump, inputJumping, running, walking, debugMode;
     
     [SerializeField] 
     int vida = 1;
 
-
     public int totalManzanas;
+
+    [SerializeField]
+    Vector2 playerMovement, bastonMovement;
+
+
 
     private void Awake()
     {
@@ -59,8 +55,18 @@ public class player_mov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        velocidad = velocidad_base;
-        transform.position = respawn.position;
+        playerVelocity = baseVelocity;
+
+        if (respawn != null)
+        {
+            transform.position = respawn.position;
+        }
+
+        if (debugMode)
+        {
+            Debug.LogWarning("El debug esta activo");
+        }
+               
     }
 
     // Update is called once per frame
@@ -69,30 +75,45 @@ public class player_mov : MonoBehaviour
         if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
         {
 
-            Debug.DrawRay(transform.position, Vector3.down * longitud_rayo, Color.red);
-            if (Physics2D.Raycast(transform.position, Vector3.down, longitud_rayo))
+            // DEBUG Controles
+            if (debugMode)
             {
-                esta_tocando_suelo = true;
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+                }
+
+            }
+
+
+            // Si el rayo toca el suelo, puedes saltar sino, gravedad++
+            Debug.DrawRay(transform.position, Vector3.down * raySize, Color.red);
+            if (Physics2D.Raycast(transform.position, Vector3.down, raySize))
+            {
+                canJump = true;
             }
             else
             {
-                esta_tocando_suelo = false;
+                canJump = false;
             }
 
+            // Si va a la izq o der, que se gire sies necesario
             if (Input.GetAxisRaw("Horizontal") == 1)
             {
-                sprite.flipX = true;
+                playerSprite.flipX = true;
             }
             else if (Input.GetAxisRaw("Horizontal") == -1)
             {
-                sprite.flipX = false;
+                playerSprite.flipX = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Z) && esta_tocando_suelo)
+            // Si puede saltar y presiona z que salte pq no?
+            if (Input.GetKeyDown(KeyCode.Z) && canJump)
             {
-                Jump();
+                inputJumping = true;
             }
 
+            // Si esta presionando el boton de caminar, pues esta caminando
             if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
                 walking = true;
@@ -104,20 +125,25 @@ public class player_mov : MonoBehaviour
 
             }
 
-            player_anim.SetBool("anim_walking", walking);
-            player_anim.SetBool("running", running);
-
+            // Si se mantiene x y esta caminando, permitirle correr 
             if (Input.GetKey(KeyCode.X) && walking)
             {
-                velocidad = Mathf.Clamp(velocidad += (aceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
+                // ClampGOD, acelera hasta un maximo
+                playerVelocity = Mathf.Clamp(playerVelocity += (aceleracion * Time.deltaTime), baseVelocity, baseVelocity * 1.5f);
                 running = true;
             }
             else
             {
+                // Desacelera hasta un minimo
+                playerVelocity = Mathf.Clamp(playerVelocity -= (desaceleracion * Time.deltaTime), baseVelocity, baseVelocity * 1.5f);
                 running = false;
-                velocidad = Mathf.Clamp(velocidad -= (desaceleracion * Time.deltaTime), velocidad_base, velocidad_base * 1.5f);
             }
 
+            // cambia las animaciones segun los booleanos
+            playerAnimator.SetBool("anim_walking", walking);
+            playerAnimator.SetBool("running", running);
+
+            // Codigo antiguo
             //if (Input.GetKey(KeyCode.X) && walking)
             //{
             //    if (velocidad < velocidad_base * 1.5)
@@ -140,37 +166,43 @@ public class player_mov : MonoBehaviour
 
 
             // Codigo del baculo
+            // Si presionas C lo activas
             if (Input.GetKeyDown(KeyCode.C))
             {
-                baculo.transform.SetPositionAndRotation(new Vector3(player.position.x, player.position.y, 0), Quaternion.Euler(Vector3.zero));
+                // Que lo posicione reiniciando su posicion y rotacion
+                baston.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(Vector3.zero));
 
-                if (baculo.activeInHierarchy)
-                {
-                    baculo.GetComponent<baculo_movement>().DesactivarBaculo();
-                    //escalaUI.text = "estado\n";
-                    //baston.SetActive(false);
-                }
-                //else if (energia > 0)
-                else
+
+                if (!baston.activeInHierarchy)
                 {
                     ActivarBaculo();
                 }
+                else
+                {
+                    baston.GetComponent<baculo_movement>().DesactivarBaculo();
+                }
 
             }
 
-            if (Input.GetKey(KeyCode.C) && baculo.activeInHierarchy)
+            // Si lo mantienes lo mueves
+            if (Input.GetKey(KeyCode.C) && baston.activeInHierarchy)
             {
-                player.velocity = new Vector2(0, player.velocity.y); 
+                //playerRigidBody2D.velocity = new Vector2(0, playerRigidBody2D.velocity.y);
+                //baculoRG.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, Input.GetAxis("Vertical") * playerVelocity);
+
+                // A el jugador lo dejas quieto, haces que el baston flote y lo puedas mover Nice
                 baculoRG.angularVelocity = 0;
-                //baculoRG.freezeRotation = true;
                 baculoRG.gravityScale = 0;
-                baculoRG.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
+                playerMovement = new Vector2(0, playerRigidBody2D.velocity.y);
+                bastonMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, Input.GetAxis("Vertical") * playerVelocity);
             }
             else
             {
-                player.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, player.velocity.y);
+                // Sino mueve al jugador y resetea la gravedad del baston
+                //playerRigidBody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, playerRigidBody2D.velocity.y);
+                playerMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, playerRigidBody2D.velocity.y);
+                bastonMovement = new Vector2(baculoRG.velocity.x, baculoRG.velocity.y);
                 baculoRG.gravityScale = 5;
-                //baculoRG.freezeRotation = false;
             }
         }
 
@@ -179,9 +211,16 @@ public class player_mov : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        playerRigidBody2D.velocity = playerMovement;
+        baculoRG.velocity = bastonMovement;
 
+        if (inputJumping)
+        {
+            inputJumping = false;
+            Jump();
+        }
 
+        // Codigo antiguo
         //if (baculo.activeInHierarchy)
         //{
         //    baculoRG.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, Input.GetAxis("Vertical") * velocidad);
@@ -197,8 +236,8 @@ public class player_mov : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Finish")
+    { 
+        if (collision.CompareTag("Finish"))
         {
             Camera.main.GetComponent<player_camera>().GameOverFinal();
         }
@@ -206,17 +245,16 @@ public class player_mov : MonoBehaviour
 
     private void Jump()
     {
-        //Camera.main.GetComponent<AudioSource>().PlayOneShot(jump_sound);
         Camera.main.GetComponent<AudioSource>().PlayOneShot(jump_sound);
-        player.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
+        playerRigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         //if (running)
         //{
-        //    player.AddForce(Vector2.up * (fuerza_salto * 1.20f));
+        //    playerRigidBody2D.AddForce(Vector2.up * (jumpForce * 1.20f));
         //}
         //else
         //{
-        //    player.AddForce(Vector2.up * fuerza_salto);
+        //    playerRigidBody2D.AddForce(Vector2.up * jumpForce);
         //}
     }
 
@@ -252,25 +290,25 @@ public class player_mov : MonoBehaviour
     public void ReducirEscalaBaston()
     {
 
-        int tamañoMinimo = baculo.GetComponent<baculo_movement>().multiplicador; 
-        int tamañoMaximo = baculo.GetComponent<baculo_movement>().tamañoMaximo;
+        int tamañoMinimo = baston.GetComponent<baculo_movement>().multiplicador; 
+        int tamañoMaximo = baston.GetComponent<baculo_movement>().tamañoMaximo;
         float tiempoReducido;
 
         // Le reduzco el tiempo sin procesar
-        tiempoReducido = baculo.GetComponent<baculo_movement>().tiempo -= totalManzanas;
+        tiempoReducido = baston.GetComponent<baculo_movement>().tiempo -= totalManzanas;
 
         // Le asigno el tiempo reducido procesado con minimo y maximo
-        baculo.GetComponent<baculo_movement>().tiempo = Mathf.Clamp(tiempoReducido, tamañoMinimo, tamañoMaximo); 
+        baston.GetComponent<baculo_movement>().tiempo = Mathf.Clamp(tiempoReducido, tamañoMinimo, tamañoMaximo); 
 
         // Actualiza el tiempo en la pantalla
-        escalaUI.text = "tam x " + Mathf.Floor(baculo.GetComponent<baculo_movement>().tiempo);
+        escalaUI.text = "tam x " + Mathf.Floor(baston.GetComponent<baculo_movement>().tiempo);
 
     }
 
     public void ActivarBaculo()
     {
         Camera.main.GetComponent<AudioSource>().PlayOneShot(baculoSoundOn);
-        baculo.SetActive(true);
+        baston.SetActive(true);
         
         //escalaUI.text = "estado\n";
         //energiasText.text = "Energia\n" + (--energia);
