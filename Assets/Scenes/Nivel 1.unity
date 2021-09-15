@@ -123,6 +123,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9247111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6747245231933400959, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+  m_PrefabInstance: {fileID: 6747245232240653100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9247114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a223fd2412c093346b24cf57c9c55a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  bastonTimeNormalized: 0
+  bastonScr: {fileID: 1340806731}
+  ui: {fileID: 634688799}
+  gradiante:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0.8679245, g: 0.20879315, b: 0.20879315, a: 1}
+    key3: {r: 0.8679245, g: 0.20879315, b: 0.20879315, a: 0}
+    key4: {r: 0.8679245, g: 0.20879315, b: 0.20879315, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32768
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  sombraGradiante:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.6, g: 0.5897436, b: 0.33333337, a: 1}
+    key2: {r: 0.6, g: 0.1438914, b: 0.1438914, a: 1}
+    key3: {r: 0.8679245, g: 0.20879315, b: 0.20879315, a: 0}
+    key4: {r: 0.8679245, g: 0.20879315, b: 0.20879315, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 43253
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!1001 &100628315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11757,7 +11836,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 11
-      m_TileSpriteIndex: 8
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -11898,10 +11977,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: -4760040529980717837, guid: a3ded6b3828deff4b93c5037e8b150c8, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1934568145699042145, guid: a3ded6b3828deff4b93c5037e8b150c8, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1934568145699042145, guid: a3ded6b3828deff4b93c5037e8b150c8, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -4433669844835282387, guid: a3ded6b3828deff4b93c5037e8b150c8, type: 3}
   - m_RefCount: 1
@@ -11967,7 +12046,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6747245232874743347, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
   m_PrefabInstance: {fileID: 6747245232240653100}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 9247111}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -12441,6 +12520,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2846953418044189575, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
   m_PrefabInstance: {fileID: 2846953417017966029}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1340806731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+  m_PrefabInstance: {fileID: 2846953417017966029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340806730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a413e5b4e65d740a3ab532c05fafa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1340806733 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2846953418044189568, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
@@ -15404,9 +15494,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 634688799}
     - target: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e9b573c22db69d48aa4d917f0352505, type: 2}
+    - target: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
       propertyPath: manzanasUI
       value: 
       objectReference: {fileID: 1111462991}
+    - target: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+      propertyPath: bastonOnFont
+      value: 
+      objectReference: {fileID: 11400000, guid: 177d1336319410a4588ecf19c6a4fb19, type: 2}
+    - target: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+      propertyPath: bastonOffFont
+      value: 
+      objectReference: {fileID: 11400000, guid: ee08c76acda150d4f97be3127a59bf91, type: 2}
+    - target: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+      propertyPath: escalaUIObject
+      value: 
+      objectReference: {fileID: 9247111}
     - target: {fileID: 2349525328303746511, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15562,6 +15668,14 @@ PrefabInstance:
       propertyPath: escalaUI
       value: 
       objectReference: {fileID: 634688799}
+    - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: bastonOffFont
+      value: 
+      objectReference: {fileID: 11400000, guid: ee08c76acda150d4f97be3127a59bf91, type: 2}
+    - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: escalaUIObject
+      value: 
+      objectReference: {fileID: 9247111}
     - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: jugadorCamaraScr
       value: 
@@ -15767,6 +15881,30 @@ PrefabInstance:
     - target: {fileID: 6747245231284644443, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245231933400952, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245231933400952, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245231933400959, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245232795978675, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 760
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245232795978675, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747245232874743347, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_text
+      value: tam x 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
