@@ -14904,7 +14904,7 @@ PolygonCollider2D:
     - - {x: 149, y: 8}
       - {x: -17, y: 8}
       - {x: -17, y: -8}
-      - {x: 149, y: -81}
+      - {x: 149, y: -8}
 --- !u!1001 &1945216483
 PrefabInstance:
   m_ObjectHideFlags: 0
