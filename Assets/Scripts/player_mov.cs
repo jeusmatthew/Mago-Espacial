@@ -22,7 +22,7 @@ public class player_mov : MonoBehaviour
     Animator playerAnimator;
 
     [SerializeField] 
-    GameObject baston;
+    GameObject baston, escalaUIObject;
 
     [SerializeField] 
     Transform respawn;
@@ -32,6 +32,12 @@ public class player_mov : MonoBehaviour
 
     [SerializeField]
     TMP_Text vidaUI, manzanasUI, escalaUI;
+
+    [SerializeField]
+    TMP_FontAsset bastonOnFont;
+
+    [SerializeField]
+    Material material;
 
     [SerializeField]
     bool canJump, inputJumping, running, walking, debugMode;
@@ -81,6 +87,19 @@ public class player_mov : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+                    Debug.LogWarning("Recargado");
+                }
+
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    AñadirManzana();
+                    Debug.LogWarning("Añadido manzana");
+                }
+
+                if (Input.GetKeyDown(KeyCode.B))
+                {
+                    baston.GetComponent<baculo_movement>().tiempo = baston.GetComponent<baculo_movement>().multiplicador;
+                    Debug.LogWarning("Reseteado baston");
                 }
 
             }
@@ -175,6 +194,7 @@ public class player_mov : MonoBehaviour
 
                 if (!baston.activeInHierarchy)
                 {
+
                     ActivarBaculo();
                 }
                 else
@@ -283,8 +303,6 @@ public class player_mov : MonoBehaviour
 
         ReducirEscalaBaston();
 
-
-
     }
 
     public void ReducirEscalaBaston()
@@ -309,10 +327,10 @@ public class player_mov : MonoBehaviour
     {
         Camera.main.GetComponent<AudioSource>().PlayOneShot(baculoSoundOn);
         baston.SetActive(true);
-        
-        //escalaUI.text = "estado\n";
-        //energiasText.text = "Energia\n" + (--energia);
-        //baston.SetActive(true);
+        escalaUI.font = bastonOnFont;
+        escalaUI.color = Color.white;
+        escalaUI.fontMaterial = material;
+        //escalaUI.color = Color.white;
     }
 
     //public void GameOver()
