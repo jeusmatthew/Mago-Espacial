@@ -22,7 +22,7 @@ public class player_mov : MonoBehaviour
     Animator playerAnimator;
 
     [SerializeField] 
-    GameObject baston;
+    GameObject baston, escalaUIObject;
 
     [SerializeField] 
     Transform respawn;
@@ -34,7 +34,13 @@ public class player_mov : MonoBehaviour
     TMP_Text vidaUI, manzanasUI, escalaUI;
 
     [SerializeField]
-    bool canJump, inputJumping, running, walking, debugMode;
+    TMP_FontAsset bastonOnFont;
+
+    [SerializeField]
+    Material material;
+
+    [SerializeField]
+    bool canJump, inputJumping, running, walking, debugMode, rayCanJump;
     
     [SerializeField] 
     int vida = 1;
@@ -44,6 +50,8 @@ public class player_mov : MonoBehaviour
     [SerializeField]
     Vector2 playerMovement, bastonMovement;
 
+    [SerializeField]
+    Vector3 colliderOffset;
 
 
     private void Awake()
@@ -81,21 +89,43 @@ public class player_mov : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+                    Debug.LogWarning("Recargado");
+                }
+
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    AñadirManzana();
+                    Debug.LogWarning("Añadido manzana");
+                }
+
+                if (Input.GetKeyDown(KeyCode.B))
+                {
+                    baston.GetComponent<baculo_movement>().tiempo = baston.GetComponent<baculo_movement>().multiplicador;
+                    Debug.LogWarning("Reseteado baston");
                 }
 
             }
 
+            rayCanJump = 
+                Physics2D.Raycast(transform.position, Vector3.down, raySize) || 
+                Physics2D.Raycast(transform.position + colliderOffset, Vector3.down, raySize) ||
+                Physics2D.Raycast(transform.position - colliderOffset, Vector3.down, raySize);
 
             // Si el rayo toca el suelo, puedes saltar sino, gravedad++
             Debug.DrawRay(transform.position, Vector3.down * raySize, Color.red);
-            if (Physics2D.Raycast(transform.position, Vector3.down, raySize))
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
+            Debug.DrawRay(transform.position + colliderOffset, (Vector3.down * raySize), Color.red);
+            Debug.DrawRay(transform.position - colliderOffset, (Vector3.down * raySize), Color.red);
+
+
+
+            //if (rayCanJump)
+            //{
+            //    canJump = true;
+            //}
+            //else
+            //{
+            //    canJump = false;
+            //}
 
             // Si va a la izq o der, que se gire sies necesario
             if (Input.GetAxisRaw("Horizontal") == 1)
@@ -108,7 +138,7 @@ public class player_mov : MonoBehaviour
             }
 
             // Si puede saltar y presiona z que salte pq no?
-            if (Input.GetKeyDown(KeyCode.Z) && canJump)
+            if (Input.GetKeyDown(KeyCode.Z) && rayCanJump)
             {
                 inputJumping = true;
             }
@@ -175,6 +205,7 @@ public class player_mov : MonoBehaviour
 
                 if (!baston.activeInHierarchy)
                 {
+
                     ActivarBaculo();
                 }
                 else
@@ -283,8 +314,6 @@ public class player_mov : MonoBehaviour
 
         ReducirEscalaBaston();
 
-
-
     }
 
     public void ReducirEscalaBaston()
@@ -309,10 +338,10 @@ public class player_mov : MonoBehaviour
     {
         Camera.main.GetComponent<AudioSource>().PlayOneShot(baculoSoundOn);
         baston.SetActive(true);
-        
-        //escalaUI.text = "estado\n";
-        //energiasText.text = "Energia\n" + (--energia);
-        //baston.SetActive(true);
+        escalaUI.font = bastonOnFont;
+        escalaUI.color = Color.white;
+        escalaUI.fontMaterial = material;
+        //escalaUI.color = Color.white;
     }
 
     //public void GameOver()
