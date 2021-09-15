@@ -49,6 +49,8 @@ public class baculo_movement : MonoBehaviour
     {
         tiempo = multiplicador;
         escalaUI.text = "tam x " + tiempo;
+        escalaUI.font = bastonOffFont;
+        escalaUI.color = new Color32(56, 164, 146, 255);
     }
 
     // Start is called before the first frame update
