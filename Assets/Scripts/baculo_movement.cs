@@ -20,19 +20,28 @@ public class baculo_movement : MonoBehaviour
     [SerializeField]
     private TMP_Text escalaUI;
 
+    [SerializeField]
+    GameObject escalaUIObject;
+
+    [SerializeField]
+    TMP_FontAsset bastonOffFont;
+
     public int multiplicador;
 
     public float tiempo;
     public int tiempoEntero;
 
     public bool CreceSolo;
-
     //private float offsetB;
-    
+
     public void DesactivarBaculo()
     {
         gameObject.transform.position = Vector3.zero;
         Camera.main.GetComponent<AudioSource>().PlayOneShot(baculoSoundOff);
+        escalaUI.font = bastonOffFont;
+        escalaUI.color = new Color32(56, 164, 146, 255);
+
+        //escalaUI.color = new Color32(255, 255, 255, 0);
         gameObject.SetActive(false);
     }
 
@@ -77,7 +86,8 @@ public class baculo_movement : MonoBehaviour
 
         //Debug.Log(tamañoMaximo - (tiempoEntero * multiplicador));
 
-        escalaUI.text = "tam x " + (tiempoEntero);
+        
+        escalaUI.text = "tam x " + tiempoEntero;
 
 
         // Convierte el tamaño en el tiempo pasado segun el multiplicador 
@@ -90,6 +100,7 @@ public class baculo_movement : MonoBehaviour
         {
             jugadorCamaraScr.GameOver();
             gameObject.SetActive(false);
+            escalaUIObject.SetActive(false);
         }
         
 
