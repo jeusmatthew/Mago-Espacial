@@ -15244,6 +15244,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2846953418044189571, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: escalaUI
       value: 
