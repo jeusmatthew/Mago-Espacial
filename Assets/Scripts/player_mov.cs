@@ -40,7 +40,7 @@ public class player_mov : MonoBehaviour
     Material material;
 
     [SerializeField]
-    bool canJump, inputJumping, running, walking, debugMode;
+    bool canJump, inputJumping, running, walking, debugMode, rayCanJump;
     
     [SerializeField] 
     int vida = 1;
@@ -50,6 +50,8 @@ public class player_mov : MonoBehaviour
     [SerializeField]
     Vector2 playerMovement, bastonMovement;
 
+    [SerializeField]
+    Vector3 colliderOffset;
 
 
     private void Awake()
@@ -104,17 +106,26 @@ public class player_mov : MonoBehaviour
 
             }
 
+            rayCanJump = 
+                Physics2D.Raycast(transform.position, Vector3.down, raySize) || 
+                Physics2D.Raycast(transform.position + colliderOffset, Vector3.down, raySize) ||
+                Physics2D.Raycast(transform.position - colliderOffset, Vector3.down, raySize);
 
             // Si el rayo toca el suelo, puedes saltar sino, gravedad++
             Debug.DrawRay(transform.position, Vector3.down * raySize, Color.red);
-            if (Physics2D.Raycast(transform.position, Vector3.down, raySize))
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
+            Debug.DrawRay(transform.position + colliderOffset, (Vector3.down * raySize), Color.red);
+            Debug.DrawRay(transform.position - colliderOffset, (Vector3.down * raySize), Color.red);
+
+
+
+            //if (rayCanJump)
+            //{
+            //    canJump = true;
+            //}
+            //else
+            //{
+            //    canJump = false;
+            //}
 
             // Si va a la izq o der, que se gire sies necesario
             if (Input.GetAxisRaw("Horizontal") == 1)
@@ -127,7 +138,7 @@ public class player_mov : MonoBehaviour
             }
 
             // Si puede saltar y presiona z que salte pq no?
-            if (Input.GetKeyDown(KeyCode.Z) && canJump)
+            if (Input.GetKeyDown(KeyCode.Z) && rayCanJump)
             {
                 inputJumping = true;
             }
