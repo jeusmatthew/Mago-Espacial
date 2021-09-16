@@ -12,6 +12,9 @@ public class baculo_movement : MonoBehaviour
     [SerializeField]
     private player_camera jugadorCamaraScr;
 
+    [SerializeField]
+    private player_mov jugadorScr;
+
     public int tamañoMaximo;
 
     [SerializeField] 
@@ -100,9 +103,11 @@ public class baculo_movement : MonoBehaviour
         // Si la escala llega a un punto maximo explota XDD
         if (gameObject.transform.localScale.x > tamañoMaximo)
         {
-            jugadorCamaraScr.GameOver();
+            //jugadorCamaraScr.GameOver();
+            jugadorScr.Daño();
             gameObject.SetActive(false);
-            escalaUIObject.SetActive(false);
+            Awake();
+            //escalaUIObject.SetActive(false);
         }
         
 

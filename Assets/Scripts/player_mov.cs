@@ -40,7 +40,7 @@ public class player_mov : MonoBehaviour
     Material material;
 
     [SerializeField]
-    bool canJump, inputJumping, running, walking, debugMode, rayCanJump;
+    bool canJump, inputJumping, running, walking, debugMode, rayCanJump, isHit;
     
     [SerializeField] 
     int vida = 1;
@@ -63,12 +63,8 @@ public class player_mov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerVelocity = baseVelocity;
 
-        if (respawn != null)
-        {
-            transform.position = respawn.position + Vector3.up;
-        }
+        ResetPlayer();
 
         if (debugMode)
         {
@@ -80,7 +76,7 @@ public class player_mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
+        if (!isHit && !Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
         {
 
             // DEBUG Controles
@@ -102,6 +98,11 @@ public class player_mov : MonoBehaviour
                 {
                     baston.GetComponent<baculo_movement>().tiempo = baston.GetComponent<baculo_movement>().multiplicador;
                     Debug.LogWarning("Reseteado baston");
+                }
+
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Daño();
                 }
 
             }
@@ -251,6 +252,7 @@ public class player_mov : MonoBehaviour
             Jump();
         }
 
+
         // Codigo antiguo
         //if (baculo.activeInHierarchy)
         //{
@@ -301,8 +303,7 @@ public class player_mov : MonoBehaviour
         }
         else
         {
-            Start();
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
+            Hit();
         }
     }
 
@@ -344,6 +345,30 @@ public class player_mov : MonoBehaviour
         //escalaUI.color = Color.white;
     }
 
+    public void Hit()
+    {
+        isHit = true;
+
+        GetComponent
+
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
+
+        playerAnimator.Play("playerHit");
+    }
+
+    public void ResetPlayer()
+    {
+        isHit = false;
+
+        gameObject.SetActive(true);
+
+        playerVelocity = baseVelocity;
+
+        if (respawn != null)
+        {
+            transform.SetPositionAndRotation(respawn.position + Vector3.up, Quaternion.Euler(Vector3.zero));
+        }
+    }
     //public void GameOver()
     //{
     //    Camera.main.GetComponent<AudioSource>().PlayOneShot(gameOver);
