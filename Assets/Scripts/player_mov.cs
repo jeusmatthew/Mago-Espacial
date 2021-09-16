@@ -67,7 +67,7 @@ public class player_mov : MonoBehaviour
 
         if (respawn != null)
         {
-            transform.position = respawn.position;
+            transform.position = respawn.position + Vector3.up;
         }
 
         if (debugMode)
@@ -301,7 +301,7 @@ public class player_mov : MonoBehaviour
         }
         else
         {
-            transform.position = respawn.position;
+            Start();
             Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
         }
     }
