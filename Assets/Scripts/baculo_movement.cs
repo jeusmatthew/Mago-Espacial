@@ -106,7 +106,10 @@ public class baculo_movement : MonoBehaviour
             jugadorCamaraScr.GameOver();
             //jugadorScr.Daño();
             gameObject.SetActive(false);
-            Awake();
+
+            escalaUI.font = bastonOffFont;
+            escalaUI.color = new Color32(56, 164, 146, 255);
+
             //escalaUIObject.SetActive(false);
         }
         
