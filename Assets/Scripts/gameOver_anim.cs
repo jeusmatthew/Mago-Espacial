@@ -24,6 +24,9 @@ public class gameOver_anim : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 Debug.Log("reiniciado?");
+
+                //SceneManager.LoadScene(0);
+
             }
         }
         
