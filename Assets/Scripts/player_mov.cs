@@ -40,12 +40,14 @@ public class player_mov : MonoBehaviour
     Material material;
 
     [SerializeField]
-    bool canJump, inputJumping, running, walking, debugMode, rayCanJump, isntPaused;
+    bool canJump, inputJumping, running, walking, debugMode, rayCanJump;
     
     [SerializeField] 
     int vida = 1;
 
     public int totalManzanas;
+
+    public bool isntPaused;
 
     [SerializeField]
     Vector2 playerMovement, bastonMovement;
@@ -106,6 +108,22 @@ public class player_mov : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.D))
                 {
                     Daño();
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    Camera.main.GetComponent<player_camera>().LevelWin();
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    Camera.main.GetComponent<player_camera>().GameOver();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Camera.main.GetComponent<player_camera>().GameOverFinal();
                 }
 
             }
@@ -277,6 +295,12 @@ public class player_mov : MonoBehaviour
         {
             Camera.main.GetComponent<player_camera>().GameOverFinal();
         }
+
+        if (collision.CompareTag("LevelWin"))
+        {
+            Camera.main.GetComponent<player_camera>().LevelWin();
+        }
+
     }
 
     private void Jump()
