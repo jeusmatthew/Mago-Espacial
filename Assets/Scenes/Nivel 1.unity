@@ -16375,6 +16375,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1680771578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1950685494, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+  m_PrefabInstance: {fileID: 6747245232240653100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1735178415
 GameObject:
   m_ObjectHideFlags: 0
@@ -16843,6 +16848,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+--- !u!114 &2349525328282994508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2349525328303746510, guid: ef72e8ac4a9448c4593115301ab80b4c, type: 3}
+  m_PrefabInstance: {fileID: 2349525328282994507}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256158340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2abbca59db33e419c1f2a17c0d47b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2359783072972656941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16927,6 +16943,14 @@ PrefabInstance:
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 853371549}
+    - target: {fileID: 2669727629346029227, guid: 484a7d4b726a1bf44a2b4e413dd78490, type: 3}
+      propertyPath: levelWinUI
+      value: 
+      objectReference: {fileID: 1680771578}
+    - target: {fileID: 2669727629346029227, guid: 484a7d4b726a1bf44a2b4e413dd78490, type: 3}
+      propertyPath: pantallaFinal
+      value: 
+      objectReference: {fileID: 1353462257}
     - target: {fileID: 2669727629346029227, guid: 484a7d4b726a1bf44a2b4e413dd78490, type: 3}
       propertyPath: gameOverFinalUI
       value: 
@@ -17033,9 +17057,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 634688799}
     - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: jugadorScr
+      value: 
+      objectReference: {fileID: 2349525328282994508}
+    - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: bastonOffFont
       value: 
       objectReference: {fileID: 11400000, guid: ee08c76acda150d4f97be3127a59bf91, type: 2}
+    - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
+      propertyPath: multiplicador
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2846953418044189574, guid: aa1a61df218e7b549afa708a3f50b141, type: 3}
       propertyPath: escalaUIObject
       value: 
@@ -17158,6 +17190,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9247114, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: bastonScr
+      value: 
+      objectReference: {fileID: 1340806731}
+    - target: {fileID: 6747245230905017053, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6747245231284644436, guid: f6341ae6812be514fa4d91aa8b9808c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
