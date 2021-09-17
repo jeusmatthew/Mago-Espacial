@@ -272,7 +272,7 @@ RectTransform:
   - {fileID: 1292134972}
   - {fileID: 1119408158}
   m_Father: {fileID: 6747245231284644436}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -981,9 +981,9 @@ RectTransform:
   - {fileID: 6747245231140671699}
   - {fileID: 6747245232556579250}
   - {fileID: 6747245230905017054}
+  - {fileID: 1950685495}
   - {fileID: 6747245232883357242}
   - {fileID: 6747245231038368057}
-  - {fileID: 1950685495}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3123,7 +3123,7 @@ RectTransform:
   - {fileID: 6747245231304462245}
   - {fileID: 6747245232512791126}
   m_Father: {fileID: 6747245231284644436}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3424,6 +3424,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6747245231284644436}
     m_Modifications:
+    - target: {fileID: 4423357314294886860, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423357314294886860, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423357314294886860, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423357314849557339, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423357314849557339, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4423357315065488924, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3438,7 +3458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4423357315252975755, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4423357315252975755, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3515,6 +3535,10 @@ PrefabInstance:
     - target: {fileID: 4423357315252975759, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
       propertyPath: m_Name
       value: PanelConifg
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423357315252975759, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf74b489d9519d439a5b0ce85b9dfcc, type: 3}
