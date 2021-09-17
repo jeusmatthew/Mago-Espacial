@@ -13,6 +13,9 @@ public class enemigo_mov : MonoBehaviour
     [SerializeField]
     Vector2 direction;
 
+    [SerializeField]
+    int directionInt;
+
     private Renderer enemySprite;
 
     [SerializeField]
@@ -53,7 +56,7 @@ public class enemigo_mov : MonoBehaviour
 
         if (!isStaticFirstTime)
         {
-            enemyRigidBody.velocity = direction * velocidad;
+            enemyRigidBody.velocity = new Vector2(directionInt * velocidad, enemyRigidBody.velocity.y);
         }
 
     }
