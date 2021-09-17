@@ -30,7 +30,7 @@ public class LevelWin : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
