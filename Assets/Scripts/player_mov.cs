@@ -76,7 +76,10 @@ public class player_mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
+
+
+        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && 
+            !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
         {
 
             // DEBUG Controles
@@ -348,7 +351,11 @@ public class player_mov : MonoBehaviour
     public void Hit()
     {
         Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
+
+        //Invoke(nameof(ResetPlayer), 3);
+
         ResetPlayer();
+
     }
 
     public void ResetPlayer()
