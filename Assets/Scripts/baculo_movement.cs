@@ -103,8 +103,8 @@ public class baculo_movement : MonoBehaviour
         // Si la escala llega a un punto maximo explota XDD
         if (gameObject.transform.localScale.x > tamañoMaximo)
         {
-            //jugadorCamaraScr.GameOver();
-            jugadorScr.Daño();
+            jugadorCamaraScr.GameOver();
+            //jugadorScr.Daño();
             gameObject.SetActive(false);
             Awake();
             //escalaUIObject.SetActive(false);
