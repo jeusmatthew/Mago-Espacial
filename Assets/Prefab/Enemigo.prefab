@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 8929828399322159995, guid: 051b2c7f10d5890429af2f6c5ae85be0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.3333334, y: 1.3333334}
@@ -98,15 +98,15 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 0.05
+  m_UseAutoMass: 1
+  m_Mass: 1.2622699
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6601563237423677572
 BoxCollider2D:
@@ -146,8 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88062a0360e94a7409173fc5701af1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 100
-  enemigo: {fileID: 6601563237423677573}
+  velocidad: 3
+  enemyRigidBody: {fileID: 6601563237423677573}
+  direction: {x: -1, y: 0}
+  isStaticFirstTime: 0
+  aplastadoClip: {fileID: 8300000, guid: 181140a211fac6c49ab963be02b06627, type: 3}
 --- !u!95 &6601563237423677690
 Animator:
   serializedVersion: 3
