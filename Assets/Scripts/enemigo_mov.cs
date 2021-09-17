@@ -7,6 +7,9 @@ public class enemigo_mov : MonoBehaviour
     [SerializeField] float velocidad;
     [SerializeField] Rigidbody2D enemigo;
 
+    [SerializeField]
+    Vector2 direction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +25,13 @@ public class enemigo_mov : MonoBehaviour
 
     private void FixedUpdate()
     {
-        enemigo.velocity = new Vector2(velocidad * Time.deltaTime, enemigo.velocity.y);
+        //enemigo.velocity = new Vector2(velocidad * Time.deltaTime, enemigo.velocity.y);
+        enemigo.velocity = direction * velocidad;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<player_mov>().Daño();
         }
