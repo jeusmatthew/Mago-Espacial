@@ -146,10 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jugadorCamaraScr: {fileID: 0}
+  jugadorScr: {fileID: 0}
   "tama\xF1oMaximo": 25
   baculoSoundOff: {fileID: 8300000, guid: 61f5f7fb59905af4690208dfc04738e8, type: 3}
   escalaUI: {fileID: 0}
-  multiplicador: 2
+  escalaUIObject: {fileID: 0}
+  bastonOffFont: {fileID: 11400000, guid: ee08c76acda150d4f97be3127a59bf91, type: 2}
+  multiplicador: 1
   tiempo: 0
   tiempoEntero: 0
   CreceSolo: 1
