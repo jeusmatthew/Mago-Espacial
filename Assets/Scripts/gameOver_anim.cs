@@ -14,19 +14,11 @@ public class gameOver_anim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Return))
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //    Debug.Log("reiniciado?");
-        //}
-
-        
-
-    }
-
-    public void LoadNextLevel()
-    {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("reiniciado?");
+        }
     }
 
 }
