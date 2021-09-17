@@ -40,7 +40,7 @@ public class player_mov : MonoBehaviour
     Material material;
 
     [SerializeField]
-    bool canJump, inputJumping, running, walking, debugMode, rayCanJump;
+    bool canJump, inputJumping, running, walking, debugMode, rayCanJump, isntPaused;
     
     [SerializeField] 
     int vida = 1;
@@ -76,10 +76,10 @@ public class player_mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isntPaused = !Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy &&
+            !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy;
 
-
-        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && 
-            !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
+        if (isntPaused)
         {
 
             // DEBUG Controles
