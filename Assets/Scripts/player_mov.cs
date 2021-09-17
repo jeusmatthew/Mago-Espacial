@@ -47,6 +47,8 @@ public class player_mov : MonoBehaviour
 
     public int totalManzanas;
 
+    public bool isntPaused;
+
     [SerializeField]
     Vector2 playerMovement, bastonMovement;
 
@@ -63,12 +65,8 @@ public class player_mov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerVelocity = baseVelocity;
 
-        if (respawn != null)
-        {
-            transform.position = respawn.position;
-        }
+        ResetPlayer();
 
         if (debugMode)
         {
@@ -80,7 +78,10 @@ public class player_mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy && !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
+        isntPaused = !Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy &&
+            !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy;
+
+        if (isntPaused)
         {
 
             // DEBUG Controles
@@ -102,6 +103,27 @@ public class player_mov : MonoBehaviour
                 {
                     baston.GetComponent<baculo_movement>().tiempo = baston.GetComponent<baculo_movement>().multiplicador;
                     Debug.LogWarning("Reseteado baston");
+                }
+
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Daño();
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    Camera.main.GetComponent<player_camera>().LevelWin();
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    Camera.main.GetComponent<player_camera>().GameOver();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Camera.main.GetComponent<player_camera>().GameOverFinal();
                 }
 
             }
@@ -251,6 +273,7 @@ public class player_mov : MonoBehaviour
             Jump();
         }
 
+
         // Codigo antiguo
         //if (baculo.activeInHierarchy)
         //{
@@ -272,6 +295,12 @@ public class player_mov : MonoBehaviour
         {
             Camera.main.GetComponent<player_camera>().GameOverFinal();
         }
+
+        if (collision.CompareTag("LevelWin"))
+        {
+            Camera.main.GetComponent<player_camera>().LevelWin();
+        }
+
     }
 
     private void Jump()
@@ -301,8 +330,7 @@ public class player_mov : MonoBehaviour
         }
         else
         {
-            transform.position = respawn.position;
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
+            Hit();
         }
     }
 
@@ -344,6 +372,27 @@ public class player_mov : MonoBehaviour
         //escalaUI.color = Color.white;
     }
 
+    public void Hit()
+    {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(hitAudio);
+
+        //Invoke(nameof(ResetPlayer), 3);
+
+        ResetPlayer();
+
+    }
+
+    public void ResetPlayer()
+    { 
+        gameObject.SetActive(true);
+
+        playerVelocity = baseVelocity;
+
+        if (respawn != null)
+        {
+            transform.SetPositionAndRotation(respawn.position + Vector3.up, Quaternion.Euler(Vector3.zero));
+        }
+    }
     //public void GameOver()
     //{
     //    Camera.main.GetComponent<AudioSource>().PlayOneShot(gameOver);

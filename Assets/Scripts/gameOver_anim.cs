@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class gameOver_anim : MonoBehaviour
 {
+    [SerializeField]
+    private player_mov playerScr;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +17,20 @@ public class gameOver_anim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (!Camera.main.GetComponent<player_camera>().guiMenu.activeInHierarchy &&
+            !Camera.main.GetComponent<player_camera>().guiConfig.activeInHierarchy)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("reiniciado?");
-        }
-    }
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Debug.Log("reiniciado?");
 
+                //SceneManager.LoadScene(0);
+
+            }
+        }
+        
+
+    }
 
 }

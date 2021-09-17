@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Baculo
   - check
+  - LevelWin
   layers:
   - Default
   - TransparentFX

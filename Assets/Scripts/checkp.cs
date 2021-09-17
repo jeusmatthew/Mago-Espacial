@@ -6,6 +6,9 @@ public class checkp : MonoBehaviour
 {
     [SerializeField] Transform respawn;
 
+    [SerializeField]
+    AudioClip checkpointClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +23,11 @@ public class checkp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             respawn.position = transform.position;
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(checkpointClip);
+            gameObject.SetActive(false);
         }
     }
 

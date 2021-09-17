@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class player_camera : MonoBehaviour
 {
     [SerializeField]
-    GameObject player, baculo, gameOverUI, gameOverFinalUI;
+    GameObject player, baculo, gameOverUI, pantallaFinal, levelWinUI;
 
     public GameObject guiMenu, guiConfig;
 
@@ -27,6 +27,7 @@ public class player_camera : MonoBehaviour
         audio.PlayOneShot(musicaGameOver);
         audio.PlayOneShot(gameOver);
         player.SetActive(false);
+        baculo.SetActive(false);
         gameOverUI.SetActive(true);
     }
 
@@ -38,7 +39,18 @@ public class player_camera : MonoBehaviour
 
         player.SetActive(false);
         baculo.SetActive(false);
-        gameOverFinalUI.SetActive(true);
+        pantallaFinal.SetActive(true);
+    }
+
+    public void LevelWin()
+    {
+        player.transform.position = new Vector3(player.transform.position.x, 0);
+        audio.Stop();
+        audio.PlayOneShot(musicaFinal);
+
+        player.SetActive(false);
+        baculo.SetActive(false);
+        levelWinUI.SetActive(true);
     }
 
     // Start is called before the first frame update

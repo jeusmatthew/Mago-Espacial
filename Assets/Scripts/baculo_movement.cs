@@ -12,6 +12,9 @@ public class baculo_movement : MonoBehaviour
     [SerializeField]
     private player_camera jugadorCamaraScr;
 
+    [SerializeField]
+    private player_mov jugadorScr;
+
     public int tamañoMaximo;
 
     [SerializeField] 
@@ -101,8 +104,13 @@ public class baculo_movement : MonoBehaviour
         if (gameObject.transform.localScale.x > tamañoMaximo)
         {
             jugadorCamaraScr.GameOver();
+            //jugadorScr.Daño();
             gameObject.SetActive(false);
-            escalaUIObject.SetActive(false);
+
+            escalaUI.font = bastonOffFont;
+            escalaUI.color = new Color32(56, 164, 146, 255);
+
+            //escalaUIObject.SetActive(false);
         }
         
 

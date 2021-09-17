@@ -27,7 +27,10 @@ public class fruta_scr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.x < -8)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,7 +42,7 @@ public class fruta_scr : MonoBehaviour
             Camera.main.GetComponent<AudioSource>().PlayOneShot(frutaSound);
         }
     
-        if (isFloating)
+        if (isFloating) 
         {
             GetComponent<Rigidbody2D>().gravityScale = 5;
             isFloating = false;

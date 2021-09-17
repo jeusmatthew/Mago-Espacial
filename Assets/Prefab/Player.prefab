@@ -176,6 +176,7 @@ MonoBehaviour:
   playerSprite: {fileID: 2349525328303746498}
   playerAnimator: {fileID: 2349525328303746509}
   baston: {fileID: 0}
+  escalaUIObject: {fileID: 0}
   respawn: {fileID: 0}
   jump_sound: {fileID: 8300000, guid: 8d847345a6161064ea2d2f91f79bfa9c, type: 3}
   baculoSoundOn: {fileID: 8300000, guid: 01fb70695eae8ed47aa3052518c8fd18, type: 3}
@@ -185,12 +186,17 @@ MonoBehaviour:
   vidaUI: {fileID: 0}
   manzanasUI: {fileID: 0}
   escalaUI: {fileID: 0}
+  bastonOnFont: {fileID: 11400000, guid: 177d1336319410a4588ecf19c6a4fb19, type: 2}
+  material: {fileID: 2100000, guid: 0e9b573c22db69d48aa4d917f0352505, type: 2}
   canJump: 0
   inputJumping: 0
   running: 0
   walking: 0
-  debugMode: 1
+  debugMode: 0
+  rayCanJump: 0
   vida: 3
   totalManzanas: 0
+  isntPaused: 0
   playerMovement: {x: 0, y: 0}
   bastonMovement: {x: 0, y: 0}
+  colliderOffset: {x: 0.5, y: 0, z: 0}
