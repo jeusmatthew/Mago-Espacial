@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6747245230905017050}
   - component: {fileID: 6747245230905017049}
   - component: {fileID: 6747245230905017048}
-  - component: {fileID: 6747245230905017055}
   m_Layer: 5
   m_Name: Panel WIn
   m_TagString: Untagged
@@ -99,18 +98,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6747245230905017055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6747245230905017053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e94f1d60d44160d4db82106a5f07d995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6747245230922323746
 GameObject:
   m_ObjectHideFlags: 0
