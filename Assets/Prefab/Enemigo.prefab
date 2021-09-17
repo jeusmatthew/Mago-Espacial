@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 8929828399322159995, guid: 051b2c7f10d5890429af2f6c5ae85be0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,7 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 3
   enemyRigidBody: {fileID: 6601563237423677573}
-  direction: {x: -1, y: 0}
+  direction: {x: 0, y: 0}
+  directionInt: -1
   isStaticFirstTime: 0
   aplastadoClip: {fileID: 8300000, guid: 181140a211fac6c49ab963be02b06627, type: 3}
 --- !u!95 &6601563237423677690
