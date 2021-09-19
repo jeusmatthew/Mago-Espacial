@@ -246,14 +246,14 @@ public class player_mov : MonoBehaviour
                 // A el jugador lo dejas quieto, haces que el baston flote y lo puedas mover Nice
                 baculoRG.angularVelocity = 0;
                 baculoRG.gravityScale = 0;
-                playerMovement = new Vector2(0, playerRigidBody2D.velocity.y);
+                playerMovement = new Vector2(0, 0);
                 bastonMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, Input.GetAxis("Vertical") * playerVelocity);
             }
             else
             {
                 // Sino mueve al jugador y resetea la gravedad del baston
                 //playerRigidBody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, playerRigidBody2D.velocity.y);
-                playerMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, playerRigidBody2D.velocity.y);
+                playerMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, 0);
                 bastonMovement = new Vector2(baculoRG.velocity.x, baculoRG.velocity.y);
                 baculoRG.gravityScale = 5;
             }
@@ -264,7 +264,7 @@ public class player_mov : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRigidBody2D.velocity = playerMovement;
+        playerRigidBody2D.velocity = new Vector2(playerMovement.x, playerRigidBody2D.velocity.y);
         baculoRG.velocity = bastonMovement;
 
         if (inputJumping)
