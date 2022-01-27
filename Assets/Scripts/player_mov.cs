@@ -50,7 +50,7 @@ public class player_mov : MonoBehaviour
     public bool isntPaused;
 
     [SerializeField]
-    Vector2 playerMovement, bastonMovement;
+    Vector2 playerMovement, bastonMovement, playerDirection;
 
     [SerializeField]
     Vector3 colliderOffset;
@@ -253,7 +253,11 @@ public class player_mov : MonoBehaviour
             {
                 // Sino mueve al jugador y resetea la gravedad del baston
                 //playerRigidBody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, playerRigidBody2D.velocity.y);
-                playerMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, 0);
+                //playerMovement = new Vector2(Input.GetAxis("Horizontal") * playerVelocity, 0);
+
+                playerDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
+                playerMovement = playerDirection * playerVelocity;
+
                 bastonMovement = new Vector2(baculoRG.velocity.x, baculoRG.velocity.y);
                 baculoRG.gravityScale = 5;
             }
@@ -264,7 +268,9 @@ public class player_mov : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //playerRigidBody2D.velocity = new Vector2(playerMovement.x, playerRigidBody2D.velocity.y);
         playerRigidBody2D.velocity = new Vector2(playerMovement.x, playerRigidBody2D.velocity.y);
+
         baculoRG.velocity = bastonMovement;
 
         if (inputJumping)

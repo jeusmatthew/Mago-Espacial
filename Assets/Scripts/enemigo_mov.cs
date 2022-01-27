@@ -73,14 +73,15 @@ public class enemigo_mov : MonoBehaviour
             float bastonMass = collision.gameObject.GetComponent<Rigidbody2D>().mass;
             float enemyMass = enemyRigidBody.mass;
 
-            if(bastonMass > enemyMass)
+            if (bastonMass > enemyMass)
             {
                 Destruido();
             }
 
         }
-        
+
     }
+
 
     private void Destruido()
     {

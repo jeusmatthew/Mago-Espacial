@@ -75,7 +75,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_AssetsPPU: 18
   m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_UpscaleRT: 0
+  m_UpscaleRT: 1
   m_PixelSnapping: 1
   m_CropFrameX: 0
   m_CropFrameY: 0
@@ -122,7 +122,8 @@ MonoBehaviour:
   player: {fileID: 0}
   baculo: {fileID: 0}
   gameOverUI: {fileID: 0}
-  gameOverFinalUI: {fileID: 0}
+  pantallaFinal: {fileID: 0}
+  levelWinUI: {fileID: 0}
   guiMenu: {fileID: 0}
   guiConfig: {fileID: 0}
   offset: 6
