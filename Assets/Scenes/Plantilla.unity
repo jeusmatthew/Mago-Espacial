@@ -1839,6 +1839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawn: {fileID: 1852638244}
+  checkpointClip: {fileID: 0}
 --- !u!212 &977785294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2664,7 +2665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056763865096597295, guid: 484a7d4b726a1bf44a2b4e413dd78490, type: 3}
       propertyPath: m_UpscaleRT
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5056763865096597295, guid: 484a7d4b726a1bf44a2b4e413dd78490, type: 3}
       propertyPath: m_RefResolutionX
